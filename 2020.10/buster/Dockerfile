@@ -2,7 +2,7 @@ FROM buildpack-deps:buster-scm
 MAINTAINER Rob Hoelz
 
 RUN groupadd -r raku && useradd -r -g raku raku \
-    mkdir /home/raku \
+    && mkdir /home/raku \
     && chown raku:raku /home/raku
 
 ARG rakudo_version=2020.10
