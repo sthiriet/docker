@@ -7,15 +7,17 @@ on:
     branches: [ master ]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        image_base: [alpine3.13, buster]
+    env: 
+      RAKUDO_VERSION: 2020.10
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag $GITHUB_REPOSITORY:$GITHUB_SHA
+      run: docker build . --file $RAKUDO_VERSION/${{ matrix.image_base }}/Dockerfile --tag $GITHUB_REPOSITORY:$GITHUB_SHA
     - name: Test docker image with root
       run: docker run -it --rm $GITHUB_REPOSITORY:$GITHUB_SHA zef list --installed
     - name: Test docker image with raku
