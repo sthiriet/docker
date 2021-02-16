@@ -20,6 +20,6 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file $VERSION/$VARIANT/Dockerfile --tag $GITHUB_REPOSITORY:$GITHUB_SHA
     - name: Test docker image with root
-      run: docker run -it --rm $GITHUB_REPOSITORY:$GITHUB_SHA zef list --installed
+      run: docker run --rm rakudo-star:latest zef list --installed && docker run --rm rakudo-star:latest raku -e 'say $*VM.version'
     - name: Test docker image with raku
-      run: docker run -it --rm --user raku $GITHUB_REPOSITORY:$GITHUB_SHA zef list --installed
+      run: docker run --rm --user raku rakudo-star:latest zef list --installed && docker run --rm --user raku rakudo-star:latest raku -e 'say $*VM.version'
