@@ -13,7 +13,7 @@ jobs:
       matrix:
         image_base: [alpine3.13, buster]
     env: 
-      RAKUDO_VERSION: 2020.10
+      RAKUDO_VERSION: "2020.10"
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
