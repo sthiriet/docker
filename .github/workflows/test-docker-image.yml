@@ -32,6 +32,7 @@ jobs:
           print join(",",@arr)
           ')
         echo "::set-output name=matrix::[$LIST_DIR]"
+        echo "[$LIST_DIR]"
   build:
     needs: setup
     runs-on: ubuntu-latest
